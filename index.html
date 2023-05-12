@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator sederhana js</title>
+  </head>
+  <style>
+    .button {
+      width: 50px;
+    }
+  </style>
+  <body>
+    <form action="">
+      <input type="number" name="" id="value1" placeholder="Number 1" />
+      <input type="number" name="" id="value2" placeholder="Number 2" />
+      <span id="hasil">Hasil : </span> <br />
+      <span id="validate_error"></span>
+
+      <br />
+      <button class="button" type="button" id="tambah">+</button>
+      <button class="button" type="button" id="kurang">-</button>
+      <button class="button" type="button" id="kali">*</button>
+      <button class="button" type="button" id="bagi">/</button> <br />
+      <button type="reset" id="reset">Reset</button>
+    </form>
+
+    <script>
+      const value1 = document.getElementById("value1");
+      const value2 = document.getElementById("value2");
+      const hasil = document.getElementById("hasil");
+
+      const tambah = document.getElementById("tambah");
+      const kurang = document.getElementById("kurang");
+      const kali = document.getElementById("kali");
+      const bagi = document.getElementById("bagi");
+      const reset = document.getElementById("reset");
+
+      const textValidateErorr = document.getElementById("validate_error");
+
+      tambah.addEventListener("click", operasiTambah);
+      kurang.addEventListener("click", opearsiKurang);
+      kali.addEventListener("click", operasiKali);
+      bagi.addEventListener("click", operasiBagi);
+      reset.addEventListener('click', () => textValidateErorr.textContent = "")
+
+      function validasiInput() {
+        if (
+          value1.value === "" ||
+          value1.value === null ||
+          value1.value === undefined
+        ) {
+          console.log("Value 1 kosong");
+          throw Error("Value 1 tidak boleh kosong");
+        }
+        if (
+          value2.value === "" ||
+          value2.value === null ||
+          value2.value === undefined
+        ) {
+          throw Error("Value 2 tidak boleh kosong");
+        }
+      }
+
+      function operasiTambah() {
+        try {
+          validasiInput();
+          // mengubah isi tag span menjadi hasil pertambahan
+          hasil.textContent = `Hasil : ${
+            parseInt(value1.value) + parseInt(value2.value)
+          }`;
+        } catch (e) {
+          textValidateErorr.textContent = e;
+          alert(e);
+        }
+      }
+
+      function opearsiKurang() {
+        try {
+          validasiInput();
+          // mengubah isi tag span menjadi hasil pengurangan
+          hasil.textContent = `Hasil : ${
+            parseInt(value1.value) - parseInt(value2.value)
+          }`;
+        } catch (e) {
+          textValidateErorr.textContent = e;
+          alert(e);
+        }
+      }
+
+      function operasiKali() {
+        try {
+          validasiInput();
+          // mengubah isi tag span menjadi hasil perkalian
+          hasil.textContent = `Hasil : ${
+            parseInt(value1.value) * parseInt(value2.value)
+          }`;
+        } catch (e) {
+          textValidateErorr.textContent = e;
+          alert(e);
+        }
+      }
+
+      function operasiBagi() {
+        try {
+          validasiInput();
+          // mengubah isi tag span menjadi hasil pembagian
+          hasil.textContent = `Hasil : ${
+            parseInt(value1.value) / parseInt(value2.value)
+          }`;
+        } catch (e) {
+          textValidateErorr.textContent = e;
+          alert(e);
+        }
+      }
+    </script>
+  </body>
+</html>
